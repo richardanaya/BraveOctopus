@@ -1,9 +1,14 @@
 {
-  "firebase": "cleanstack",
-  "public": "static",
+  "firebase": "braveoctopus",
+  "public": ".",
   "ignore": [
     "firebase.json",
-    "**/.*",
+    "configs",
+    ".gitignore",
+    "LICENSE.md",
+    "package.json",
+    "README.md",
+    "src",
     "**/node_modules/**"
   ]
 }
