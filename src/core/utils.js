@@ -49,7 +49,7 @@ var component = function(f){
   return React.createClass({
     mixins: [ReactCursorMixin],
     render() {
-       return f(this.props)
+       return f.call(this,this.props,this.refs)
     }
   });
 }
