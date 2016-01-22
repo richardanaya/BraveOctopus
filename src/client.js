@@ -6,15 +6,27 @@ import sessionState from "core/sessionState"
 import routesContainer from "routes";
 import Immutable from "immutable"
 require("../lib/react-mdl/material.js")
-import {publish} from "core/utils"
+import {publish,listen} from "core/utils"
 var immstruct = require('immstruct');
+require('auth')
 
 //Deydrate state from json
 sessionState.set(immstruct({
 	pageLoaded: false,
 	message: "Hello World!",
-	highfivecount: 0
+	highfivecount: 0,
+	user: null
 }));
+
+window.__firebase__ = new Firebase('https://braveoctopus.firebaseio.com/');
+
+var authData = window.__firebase__.getAuth();
+if (authData) {
+	console.log("User " + authData.uid + " is logged in with " + authData.provider);
+	sessionState.get().cursor().set("user",authData);
+} else {
+  console.log("User is not logged in");
+}
 
 /**
  * Fire-up React Router.
@@ -25,14 +37,3 @@ ReactDOM.render(React.createElement(ReactRouter.Router, {routes: routesContainer
 document.addEventListener("DOMContentLoaded", function(event) {
 	sessionState.get().cursor().set("pageLoaded",true)
 })
-
-
-/**
- * Detect whether the server-side render has been discarded due to an invalid checksum.
- */
-if (process.env.NODE_ENV !== "production") {
-	if (!reactRoot.firstChild || !reactRoot.firstChild.attributes ||
-	    !reactRoot.firstChild.attributes["data-react-checksum"]) {
-		console.error("Server-side React render was discarded. Make sure that your initial render does not contain any client-side code.");
-	}
-}
