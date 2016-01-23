@@ -32,6 +32,7 @@ config.devServer = {
 	lazy:        false,
 	quiet:       true,
 	noInfo:      true,
+	historyApiFallback: true,
 	headers:     {"Access-Control-Allow-Origin": "*"},
 	stats: {colors: true},
 	host:        process.env.HOSTNAME || "localhost"
