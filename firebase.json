@@ -5,6 +5,7 @@
     "firebase.json",
     "configs",
     ".gitignore",
+    ".git",
     "LICENSE.md",
     "package.json",
     "README.md",
