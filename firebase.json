@@ -10,5 +10,9 @@
     "README.md",
     "src",
     "**/node_modules/**"
-  ]
+  ],
+  "rewrites": [ {
+    "source": "**",
+    "destination": "/index.html"
+  }]
 }
