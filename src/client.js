@@ -8,7 +8,7 @@ import Immutable from "immutable"
 require("../lib/react-mdl/material.js")
 import {publish,listen} from "core/utils"
 var immstruct = require('immstruct');
-require('auth')
+require('update/auth')
 
 //Deydrate state from json
 sessionState.set(immstruct({
@@ -18,15 +18,19 @@ sessionState.set(immstruct({
 	user: null
 }));
 
+//setup firebase
 window.__firebase__ = new Firebase('https://braveoctopus.firebaseio.com/');
 
+//check if we are logged in
 var authData = window.__firebase__.getAuth();
-if (authData) {
-	console.log("User " + authData.uid + " is logged in with " + authData.provider);
-	sessionState.get().cursor().set("user",authData);
-} else {
-  console.log("User is not logged in");
-}
+window.__firebase__.onAuth(function(authData) {
+	if (authData) {
+		publish("loggedIn",authData);
+	} else {
+	  publish("loggedOut");
+	}
+});
+
 
 /**
  * Fire-up React Router.
