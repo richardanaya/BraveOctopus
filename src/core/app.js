@@ -2,7 +2,7 @@ require("babel-polyfill");
 import React from "react";
 import sessionState from "./sessionState";
 import {component} from "./utils"
-import AppComponent from "../view/App"
+import AppComponent from "../view/app.component"
 
 class App extends React.Component {
   constructor(){

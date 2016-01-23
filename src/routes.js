@@ -2,7 +2,7 @@ import React from "react";
 import {Router, Route, IndexRoute } from "react-router";
 
 import App from "./core/app";
-import Main from "./view/Main";
+import Main from "./view/main.component";
 
 /**
  * The React Router 1.0 routes for both the server and the client.
