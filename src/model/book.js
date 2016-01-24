@@ -1,5 +1,9 @@
 export default {
-  create: function(title){
-    console.log("make book: " + title);
+  create: async function(title){
+      return new Promise(function(resolve,reject){
+        window.setTimeout(function(){
+          resolve(title+" created")
+        },1000)
+      })
   }
 }

@@ -19,13 +19,15 @@ sessionState.set(immstruct({
 }));
 
 //fire up React RouterFire-up React Router
+var appHistory = history.createHistory();
 const reactRoot = window.document.getElementById("react-root");
-ReactDOM.render(React.createElement(ReactRouter.Router, {routes: routesContainer, history: history.createHistory()}), reactRoot);
+ReactDOM.render(React.createElement(ReactRouter.Router, {routes: routesContainer, history: appHistory}), reactRoot);
+listen("navigateTo", function *(path){
+	appHistory.pushState(null,path);
+})
 
 //setup firebase
 window.__firebase__ = new Firebase('https://braveoctopus.firebaseio.com/');
-
-//check if we are logged in
 var authData = window.__firebase__.getAuth();
 window.__firebase__.onAuth(function(authData) {
 	if (authData) {
