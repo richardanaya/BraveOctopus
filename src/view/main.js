@@ -10,15 +10,10 @@ listen("save",function *(data){
 export default component((props,refs) => {
   return <div className="page-container">
   <Card shadow={0} className="card-center">
-    <CardTitle>Data Card</CardTitle>
+    <CardTitle>Welcome</CardTitle>
     <CardText>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Aenan convallis.
-        <input ref="imp"></input>
+        This is a website for writing simple choose your own adventure stories! Login and have fun!
     </CardText>
-    <CardActions border>
-        <Button onClick={()=>publish("save",refs.imp.value)} colored>save</Button>
-    </CardActions>
   </Card>
   </div>;
 });

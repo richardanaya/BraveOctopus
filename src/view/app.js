@@ -5,17 +5,23 @@ import {FABButton, Icon} from "react-mdl";
 import {Link} from 'react-router'
 
 export default component((props) => {
-  var authComponent = props.sessionState.get("user")==null?
-  <li onClick={()=>publish("login")}><Icon name="edit"/>Login</li>:
-  <li onClick={()=>publish("logout")}><Icon name="edit"/>Logout</li>;
+  var links = props.sessionState.get("user")==null?(
+    <ul className="link-list">
+      <li><Icon name="search"/>Discover</li>
+      <li onClick={()=>publish("login")}><Icon name="edit"/>Login</li>
+    </ul>
+  ):
+  (
+    <ul className="link-list">
+      <li><Icon name="search"/>Discover</li>
+      <li><Link to="/book"><Icon name="edit"/>Write</Link></li>
+      <li onClick={()=>publish("logout")}><Icon name="edit"/>Logout</li>
+    </ul>
+  );
 
   return <div>
     <div className="header">
-      <ul className="link-list">
-        <li><Icon name="search"/>Discover</li>
-        <li><Link to="/book"><Icon name="edit"/>Write</Link></li>
-        {authComponent}
-      </ul>
+      {links}
       <div className="title">
         <FABButton colored>
           <Icon name="add" />
