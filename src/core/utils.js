@@ -54,4 +54,11 @@ var component = function(f){
   });
 }
 
-export {stream,subscribe,publish,listen,component}
+function getQueryString(name) {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+      results = regex.exec(location.search);
+  return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+export {stream,subscribe,publish,listen,component,getQueryString}

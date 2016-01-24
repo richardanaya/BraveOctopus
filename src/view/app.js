@@ -13,7 +13,7 @@ export default component((props) => {
     <div className="header">
       <ul className="link-list">
         <li><Icon name="search"/>Discover</li>
-        <li><Link to="/create"><Icon name="edit"/>Write</Link></li>
+        <li><Link to="/book"><Icon name="edit"/>Write</Link></li>
         {authComponent}
       </ul>
       <div className="title">
