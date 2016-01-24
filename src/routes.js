@@ -2,8 +2,8 @@ import React from "react";
 import {Router, Route, IndexRoute } from "react-router";
 
 import App from "./core/app";
-import Main from "./view/main.component";
-import Create from "./view/create.component";
+import Main from "./view/main";
+import Create from "./view/create";
 
 /**
  * The React Router 1.0 routes for both the server and the client.

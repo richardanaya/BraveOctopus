@@ -4,19 +4,23 @@ import * as ReactRouter from "react-router";
 import * as history from "history";
 import sessionState from "core/sessionState"
 import routesContainer from "routes";
-import Immutable from "immutable"
+var immstruct = require('immstruct');
 require("../lib/react-mdl/material.js")
 import {publish,listen} from "core/utils"
-var immstruct = require('immstruct');
-require('update/auth')
 
-//Deydrate state from json
+//add all our updaters
+require('update/auth')
+require('update/book')
+
+//set initial state
 sessionState.set(immstruct({
 	pageLoaded: false,
-	message: "Hello World!",
-	highfivecount: 0,
 	user: null
 }));
+
+//fire up React RouterFire-up React Router
+const reactRoot = window.document.getElementById("react-root");
+ReactDOM.render(React.createElement(ReactRouter.Router, {routes: routesContainer, history: history.createHistory()}), reactRoot);
 
 //setup firebase
 window.__firebase__ = new Firebase('https://braveoctopus.firebaseio.com/');
@@ -31,13 +35,7 @@ window.__firebase__.onAuth(function(authData) {
 	}
 });
 
-
-/**
- * Fire-up React Router.
- */
-const reactRoot = window.document.getElementById("react-root");
-ReactDOM.render(React.createElement(ReactRouter.Router, {routes: routesContainer, history: history.createHistory()}), reactRoot);
-
+//set page loaded flag when loaded
 document.addEventListener("DOMContentLoaded", function(event) {
 	sessionState.get().cursor().set("pageLoaded",true)
 })
