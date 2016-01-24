@@ -18,7 +18,7 @@ sessionState.set(immstruct({
 	user: null
 }));
 
-//fire up React RouterFire-up React Router
+//setup react and navigation
 var appHistory = history.createHistory();
 const reactRoot = window.document.getElementById("react-root");
 ReactDOM.render(React.createElement(ReactRouter.Router, {routes: routesContainer, history: appHistory}), reactRoot);
