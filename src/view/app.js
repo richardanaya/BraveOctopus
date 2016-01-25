@@ -5,6 +5,10 @@ import {FABButton, Icon} from "react-mdl";
 import {Link} from 'react-router'
 
 export default component((props) => {
+  if(!props.sessionState.get("ready")){
+    return <div>Loading</div>
+  }
+
   var links = props.sessionState.get("user")==null?(
     <ul className="link-list">
       <li onClick={()=>publish("navigateTo","/")}><Icon name="search"/>Discover</li>

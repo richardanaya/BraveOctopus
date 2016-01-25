@@ -14,7 +14,7 @@ module.exports = (
 			<Route path="/" component={App}>
 				<IndexRoute component={Main} />
 				<Route path="/book" component={BookList} />
-				<Route path="/book/:bookId" component={Book} />
+				<Route path="/book/:bookId/:page" component={Book} />
 			</Route>
 	</Router>
 );

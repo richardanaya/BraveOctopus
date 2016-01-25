@@ -7,8 +7,7 @@ import AppComponent from "../view/app"
 class App extends React.Component {
   constructor(){
     super()
-    this.data = sessionState.get();
-    this.data.on('swap',this.onNewData.bind(this))
+    sessionState.on('swap',this.onNewData.bind(this))
   }
 
   onNewData(newData) {
@@ -18,10 +17,10 @@ class App extends React.Component {
   render() {
      //clone our elements with cursor as prop
      var rootChildren = React.Children.map(this.props.children, (element)=>{
-       return React.cloneElement(element, {sessionState: this.data.cursor()});
+       return React.cloneElement(element, {sessionState: sessionState.get()});
      });
      return (
-       <AppComponent sessionState={this.data.cursor()}>
+       <AppComponent sessionState={sessionState.get()}>
          {rootChildren}
        </AppComponent>
      );

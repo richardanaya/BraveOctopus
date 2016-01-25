@@ -2,7 +2,14 @@ import Book from "model/book"
 import {publish,listen} from "core/utils"
 
 listen("createBook",function *(title){
-	var result = yield Book.create(title);
-  console.log(result);
-  publish("navigateTo","/book/1?page=0")
+	var bookKey = Book.create(title);
+  publish("navigateTo",`/book/${bookKey}/0`)
+})
+
+listen("editBook",function *(bookKey){
+  publish("navigateTo",`/book/${bookKey}/0`)
+})
+
+listen("savePage",function *(info){
+	console.log(info);
 })
