@@ -7,14 +7,14 @@ import {Link} from 'react-router'
 export default component((props) => {
   var links = props.sessionState.get("user")==null?(
     <ul className="link-list">
-      <li><Link to="/"><Icon name="search"/>Discover</Link></li>
+      <li onClick={()=>publish("navigateTo","/")}><Icon name="search"/>Discover</li>
       <li onClick={()=>publish("login")}><Icon name="edit"/>Login</li>
     </ul>
   ):
   (
     <ul className="link-list">
-      <li><Link to="/"><Icon name="search"/>Discover</Link></li>
-      <li><Link to="/book"><Icon name="edit"/>Write</Link></li>
+      <li onClick={()=>publish("navigateTo","/")}><Icon name="search"/>Discover</li>
+      <li onClick={()=>publish("navigateTo","/book")}><Icon name="edit"/>Write</li>
       <li onClick={()=>publish("logout")}><Icon name="edit"/>Logout</li>
     </ul>
   );
