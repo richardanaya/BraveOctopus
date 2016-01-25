@@ -4,7 +4,10 @@ var Immutable = require('immutable');
 
 listen("loggedOut",function *(){
 	console.log("Clean up user data")
-	sessionState.get().set("user",null);
+	var state = sessionState.get();
+	state.set("user",null);
+	state.set("books",Immutable.Map())
+	state.set("ready",true)
 })
 
 listen("loggedIn",function *(authData){

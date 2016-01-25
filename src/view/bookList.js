@@ -5,15 +5,15 @@ import {Card, CardTitle, CardText, CardActions, Button} from "react-mdl";
 export default component((props,context)=>{
   var names = props.sessionState.get("books").map((x,key)=>{
     return (
-      <Card shadow={0} className="card-center">
+      <Card key={"book_"+key} shadow={0} className="card-center">
         <CardTitle>{x.get("title")}</CardTitle>
         <CardActions border>
             <Button onClick={()=>{publish("editBook",key)}} colored>Edit Book</Button>
-            <Button onClick={()=>{publish("deleteBook",key)}} colored>Delete Book</Button>
+            <Button onClick={()=>{publish("deleteBook","red")}} colored>Delete Book</Button>
         </CardActions>
       </Card>
     );
-  })
+  }).toList();
 
   return <div className="page-container">
   <Card shadow={0} className="card-center">
