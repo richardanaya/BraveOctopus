@@ -8,5 +8,10 @@ export default {
     var key = result.key();
     sessionState.get().update("books",x=>x.set(key,Immutable.fromJS(book)));
     return key;
+  },
+  delete: function(key){
+    var ref = window.__firebase__.child(key)
+    ref.remove();
+    sessionState.get().update("books",x=>x.delete(key));
   }
 }

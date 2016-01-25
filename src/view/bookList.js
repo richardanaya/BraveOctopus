@@ -9,7 +9,7 @@ export default component((props,context)=>{
         <CardTitle>{x.get("title")}</CardTitle>
         <CardActions border>
             <Button onClick={()=>{publish("editBook",key)}} colored>Edit Book</Button>
-            <Button onClick={()=>{publish("deleteBook","red")}} colored>Delete Book</Button>
+            <Button onClick={()=>{publish("deleteBook",key)}} colored>Delete Book</Button>
         </CardActions>
       </Card>
     );

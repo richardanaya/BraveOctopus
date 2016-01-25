@@ -11,6 +11,7 @@ listen("editBook",function *(bookKey){
 })
 
 listen("deleteBook",function *(key){
+	var bookKey = Book.delete(key);
 	publish("navigateTo",`/book/`)
 })
 
