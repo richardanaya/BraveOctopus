@@ -13,5 +13,17 @@ export default {
     var ref = window.__firebase__.child(key)
     ref.remove();
     sessionState.get().update("books",x=>x.delete(key));
+  },
+  savePage: function(key,pageNum,title,text){
+    var ref = window.__firebase__.child(key).child("pages").child(pageNum)
+    ref.child("title").set(title);
+    ref.child("text").set(text);
+    /*sessionState.get().get("books").get(key).get("pages").update(function(x){
+      var page = x.get(0);
+      page = page.set("title","blah")
+      page = page.set("text","blah")
+      return x.set(0,page)
+    });*/
+    sessionState.get().get("books").get(key).get("pages").get(0).update(x=>x.set("title",title).set("text",text))
   }
 }

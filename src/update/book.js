@@ -11,10 +11,9 @@ listen("editBook",function *(bookKey){
 })
 
 listen("deleteBook",function *(key){
-	var bookKey = Book.delete(key);
-	publish("navigateTo",`/book/`)
+	Book.delete(key);
 })
 
-listen("savePage",function *(info){
-	console.log(info);
+listen("savePage",function *({bookId,pageNum,title,text}){
+	Book.savePage(bookId,pageNum,title,text);
 })
