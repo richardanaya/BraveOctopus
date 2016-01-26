@@ -5,18 +5,7 @@ import {listen,publish,component} from "../core/utils"
 import {FABButton, Icon} from "react-mdl";
 import {Link} from 'react-router'
 
-class App extends React.Component {
-  constructor(){
-    super()
-    sessionState.on('swap',this.onNewData.bind(this))
-  }
-
-  onNewData(newData) {
-    this.forceUpdate();
-  }
-
-  render() {
-    var props = this.props;
+export default component((props,context)=>{
     if(!sessionState.get("ready")){
       return <div>Loading</div>
     }
@@ -35,7 +24,7 @@ class App extends React.Component {
       </ul>
     );
 
-      var rootChildren = React.Children.map(this.props.children, (element)=>{
+      var rootChildren = React.Children.map(props.children, (element)=>{
         return React.cloneElement(element, {sessionState: sessionState.get()});
       });
       return <div>
@@ -50,7 +39,4 @@ class App extends React.Component {
           </div>
         {rootChildren}
       </div>
-  }
-}
-
-export default App
+});

@@ -21,7 +21,9 @@ sessionState.set({
 //setup react and navigation
 var appHistory = history.createHistory();
 const reactRoot = window.document.getElementById("react-root");
-ReactDOM.render(React.createElement(ReactRouter.Router, {routes: routesContainer, history: appHistory}), reactRoot);
+sessionState.on('swap',()=>{
+		ReactDOM.render(React.createElement(ReactRouter.Router, {routes: routesContainer, history: appHistory}), reactRoot);
+})
 listen("navigateTo", function *(path){
 	appHistory.pushState(null,path);
 })
