@@ -1,7 +1,7 @@
 import React from "react";
 import {Router, Route, IndexRoute } from "react-router";
 
-import App from "./core/app";
+import Container from "./view/container";
 import Main from "./view/main";
 import BookList from "./view/bookList";
 import Book from "./view/book";
@@ -11,7 +11,7 @@ import Book from "./view/book";
  */
 module.exports = (
 	<Router>
-			<Route path="/" component={App}>
+			<Route path="/" component={Container}>
 				<IndexRoute component={Main} />
 				<Route path="/book" component={BookList} />
 				<Route path="/book/:bookId/:page" component={Book} />

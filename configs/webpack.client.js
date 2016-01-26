@@ -23,10 +23,10 @@ module.exports = {
 	context: __dirname,
 	debug:   false,
 	devtool: false,
-	entry:   ["../src/client"],
+	entry:   ["../src/app"],
 	output:  {
 		path:          path.join(__dirname, "../dist"),
-		filename:      "client.js",
+		filename:      "app.js",
 		chunkFilename: "[name].[id].js"
 	},
 	plugins: [
